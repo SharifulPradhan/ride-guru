@@ -34,7 +34,7 @@ const Login = () => {
     photo: ''
   })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
+  console.log(loggedInUser, loggedInUser.displayName);
   // Google Firebase Authentication
   const handleGoogleSignin = () => {
     firebase.auth().signInWithPopup(googleProvider)
@@ -99,6 +99,7 @@ const Login = () => {
       newUserInfo.error = '';
       newUserInfo.success = true;
       setUser(newUserInfo);
+      updateUserName(user.name);
     })
     .catch(error => {
       const newUserInfo = {...user};
@@ -107,13 +108,17 @@ const Login = () => {
       setUser(newUserInfo);
     })
   }
+
   if(registeredUser && user.email && user.password){
     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
   .then( res => {
       const newUserInfo = {...user};
       newUserInfo.error = '';
+      newUserInfo.name = res.user?.displayName;
       newUserInfo.success = true;
+      newUserInfo.isSignIn = true;
       setUser(newUserInfo);
+      setLoggedInUser(newUserInfo);
   })
   .catch((error) => {
     const newUserInfo = {...user};
@@ -125,14 +130,27 @@ const Login = () => {
 
   e.preventDefault();
   }
+
+  const updateUserName = name => {
+    const user = firebase.auth().currentUser;
+    user.updateProfile({
+      displayName: name
+    }).then(() => {
+      console.log('user name updated Successfully')
+    }).catch((error) => {
+      console.log(error)
+    });
+    console.log(name);
+  }
   return (
     <div className="container border shadow rounded text-center d-flex flex-column justify-content-center align-items-center w-50">
       <form onSubmit={handleSubmit} className="form-group d-flex flex-column w-50">
+        <h1>{loggedInUser.name}</h1>
         <h1> { registeredUser ? 'Login' : 'Create an account'}
         </h1>
         <p style={{color:"red", fontWeight:'700'}}>{user.error}</p>
         {
-        user.success && <p style={{color:"green", fontWeight:'700'}}>{registeredUser ? "login Successfully" : "Account successfully created"}</p>
+        user.success && <p style={{color:"green", fontWeight:'700'}}>{registeredUser ? "login Successfull" : "Account successfully created"}</p>
         }
         {
           !registeredUser && <input type="text" className="form-control mt-5" name="name" onBlur={handleBlur}  placeholder="Name" required/>
