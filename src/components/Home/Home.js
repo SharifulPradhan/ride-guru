@@ -1,10 +1,12 @@
-import {React, useEffect, useState} from 'react';
+import { React, useEffect, useState } from 'react';
 import rideData from '../../Data/fakeData.json'
 import RideDetails from '../RideDetails/RideDetails';
 import './Home.css'
+
+
 const Home = () => {
   const [rides, setRides] = useState([]);
-  useEffect(()=>{
+  useEffect(() => {
     setRides(rideData);
   }, [])
   return (

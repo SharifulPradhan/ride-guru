@@ -5,6 +5,7 @@ import { UserContext } from '../../App'
 import firebase from "firebase/app";
 import { Link } from 'react-router-dom';
 
+
 const UserDetails = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
@@ -25,8 +26,8 @@ const UserDetails = () => {
       })
   }
   return (
-    <div className="container text-center">
-      <img src={loggedInUser.photo} alt=""/>
+    <div className="container text-center border rounded align-items-center p-5 shadow">
+      <img src={loggedInUser.photo} alt="" />
       <h1>{loggedInUser.name}</h1>
       <h1>{loggedInUser.email}</h1>
       <Button onClick={handleSignOut}><Link to="/home" className="text-white">Sign Out</Link></Button>

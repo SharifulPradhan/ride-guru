@@ -1,15 +1,13 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { createContext, useState } from 'react';
 import {BrowserRouter as Router,
 Switch,
 Route,
-// Link
 } from 'react-router-dom'
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
-import { createContext } from 'react';
-import { useState } from 'react';
 import UserDetails from './components/UserDetails/UserDetails';
 import NotFound from './components/NotFound/NotFound';
 import Destination from './components/Destination/Destination';
@@ -37,9 +35,6 @@ function App() {
             <UserDetails/>
           </Route>
           <PrivateRoute path='/destination/:id'>
-            <Destination/>
-          </PrivateRoute>
-          <PrivateRoute path='/destination'>
             <Destination/>
           </PrivateRoute>
           <Route path='*'>

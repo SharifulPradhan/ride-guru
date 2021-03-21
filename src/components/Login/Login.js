@@ -23,7 +23,6 @@ const Login = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-
   const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
     isSignIn: false,
@@ -35,11 +34,13 @@ const Login = () => {
     photo: ''
   })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  console.log(loggedInUser)
+  console.log(loggedInUser);
+
   const history = useHistory();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
-  // Google Firebase Authentication
+
+  // Google Sign In Firebase Authentication
   const handleGoogleSignin = () => {
     firebase.auth().signInWithPopup(googleProvider)
       .then(res => {
@@ -60,7 +61,7 @@ const Login = () => {
       })
   }
 
-  // Facebook Firebase Authentication
+  // Facebook Signin Firebase Authentication
   const handleFBSignin = () => {
     firebase.auth().signInWithPopup(facebookProvider)
       .then((res) => {
@@ -80,7 +81,8 @@ const Login = () => {
         console.log(err.code);
       });
   }
-  // Email Passsword Firbase Authentication
+
+  // Email Passsword Signin Firbase Authentication
   const handleBlur = e => {
     let isFieldValid = true;
     if(e.target.name === 'email'){
@@ -114,7 +116,6 @@ const Login = () => {
       setUser(newUserInfo);
     })
   }
-
   if(!newUser && user.email && user.password){
     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
   .then( res => {
@@ -134,7 +135,6 @@ const Login = () => {
     setUser(newUserInfo);
   });
   }
-
   e.preventDefault();
   }
 
