@@ -2,20 +2,28 @@
   "id": 1,
   "rideOption": "BIKE",
   "rideImage": "https://i.ibb.co/0JzmxC0/bike.png",
+  "avatar": "https://i.ibb.co/8YpMLF2/peopleicon.png",
+  "passengerCount": "4",
   "rideFare": "$45.52"
 }, {
   "id": 2,
   "rideOption": "BUS",
   "rideImage": "https://i.ibb.co/xD6PVgW/bus.png",
+  "avatar": "https://i.ibb.co/8YpMLF2/peopleicon.png",
+  "passengerCount": "4",
   "rideFare": "$40.91"
 }, {
   "id": 3,
   "rideOption": "CAR",
   "rideImage": "https://i.ibb.co/HDQ3ZsN/car.png",
+  "avatar": "https://i.ibb.co/8YpMLF2/peopleicon.png",
+  "passengerCount": "4",
   "rideFare": "$6.15"
 }, {
   "id": 4,
   "rideOption": "TRAIN",
   "rideImage": "https://i.ibb.co/gSpXgWn/train.png",
+  "avatar": "https://i.ibb.co/8YpMLF2/peopleicon.png",
+  "passengerCount": "4",
   "rideFare": "$59.77"
 }]

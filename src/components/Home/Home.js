@@ -1,11 +1,11 @@
 import {React, useEffect, useState} from 'react';
-import data from '../../Data/fakeData.json'
+import rideData from '../../Data/fakeData.json'
 import RideDetails from '../RideDetails/RideDetails';
 import './Home.css'
 const Home = () => {
   const [rides, setRides] = useState([]);
   useEffect(()=>{
-    setRides(data);
+    setRides(rideData);
   }, [])
   return (
     <div className="container-fluid banner">

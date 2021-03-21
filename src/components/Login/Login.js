@@ -35,6 +35,7 @@ const Login = () => {
     photo: ''
   })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  console.log(loggedInUser)
   const history = useHistory();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
@@ -149,11 +150,9 @@ const Login = () => {
     console.log(name);
   }
   return (
-    <div className="container border text-center d-flex flex-column justify-content-center align-items-center w-50">
-      <form onSubmit={handleSubmit} className="form-group d-flex flex-column w-50">
-        <h1>{loggedInUser.name}</h1>
-        <h1> { newUser ? 'Create an account' : 'Log In'}
-        </h1>
+    <div className="container border text-center d-flex flex-column justify-content-center align-items-center">
+      <form onSubmit={handleSubmit} className="form-group d-flex flex-column">
+        <h1 className="mt-5"> { newUser ? 'Create an account' : 'Login'}</h1>
         <p style={{color:"red", fontWeight:'700'}}>{user.error}</p>
         {
         user.success && <p style={{color:"green", fontWeight:'700'}}>{newUser ? "Account successfully created" : "Login Successfull"}</p>
@@ -173,12 +172,10 @@ const Login = () => {
           ?<p>Already have an account? <Link to="/login" onClick={() => setNewUser(!newUser)}>Login</Link></p>
           :<p>Don't have an account? <Link to="/login" onClick={() => setNewUser(!newUser)}>Create an account</Link></p>
         }
+        <p>or</p>
       </form>
-      <h1>or</h1>
-      <Button size="lg" onClick={handleFBSignin}><FontAwesomeIcon icon={faFacebook} /> Sing in with Facebook</Button>
-      <br />
-      <br />
-      <Button size="lg" onClick={handleGoogleSignin}><FontAwesomeIcon icon={faGoogle} /> Sing in with Google</Button>
+      <Button onClick={handleFBSignin} className="mb-2 w-25" ><FontAwesomeIcon icon={faFacebook} /> Sing in with Facebook</Button>
+      <Button onClick={handleGoogleSignin} className="mb-4 w-25"><FontAwesomeIcon icon={faGoogle} /> Sing in with Google</Button>
     </div>
   );
 };

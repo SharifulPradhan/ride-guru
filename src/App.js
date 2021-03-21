@@ -20,7 +20,7 @@ export const UserContext = createContext();
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
-    <UserContext.Provider value = {[loggedInUser, setLoggedInUser]} className="container-fluid banner">
+    <UserContext.Provider value = {[loggedInUser, setLoggedInUser]} className="container banner">
       <Router>
         <Header/>
         <Switch>
@@ -36,6 +36,9 @@ function App() {
           <Route path='/user-details'>
             <UserDetails/>
           </Route>
+          <PrivateRoute path='/destination/:id'>
+            <Destination/>
+          </PrivateRoute>
           <PrivateRoute path='/destination'>
             <Destination/>
           </PrivateRoute>

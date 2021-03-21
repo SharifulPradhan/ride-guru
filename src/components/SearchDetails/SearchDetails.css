@@ -1,0 +1,17 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.available-rides{
+  background-color: #a8d2a0;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.img-resize {
+  height: 40px;
+  width: 40px;
+}

@@ -8,9 +8,9 @@ const Header = () => {
   const [loggedInUser] = useContext(UserContext);
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="mt-5 navbar navbar-light navbar-expand">
         <div className="container justify-content-end">
-            <div className="navbar-nav ">
+            <div className="navbar-nav">
               <Link className="nav-link" to="/home">Home</Link>
               <Link className="nav-link" to="/destination">Destination</Link>
               <Link className="nav-link" to="/blog">Blog</Link>
