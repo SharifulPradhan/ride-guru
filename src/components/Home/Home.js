@@ -1,15 +1,19 @@
 import {React, useEffect, useState} from 'react';
 import data from '../../Data/fakeData.json'
+import RideDetails from '../RideDetails/RideDetails';
 import './Home.css'
 const Home = () => {
-  const [rides, setRides] = useState('');
+  const [rides, setRides] = useState([]);
   useEffect(()=>{
     setRides(data);
   }, [])
-  console.log(rides);
   return (
     <div className="container-fluid banner">
-      <h1>{rides.length}</h1>
+      <div className="row">
+        {
+          rides.map(ride => <RideDetails rideDetails={ride} key={ride.id}></RideDetails>)
+        }
+      </div>
     </div>
   );
 };

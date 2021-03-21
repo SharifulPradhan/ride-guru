@@ -1,51 +1,21 @@
 [{
   "id": 1,
   "rideOption": "BIKE",
-  "rideImage": "https://ibb.co/SvZ5ztk",
+  "rideImage": "https://i.ibb.co/0JzmxC0/bike.png",
   "rideFare": "$45.52"
 }, {
   "id": 2,
   "rideOption": "BUS",
-  "rideImage": "https://ibb.co/t4Dky2g",
+  "rideImage": "https://i.ibb.co/xD6PVgW/bus.png",
   "rideFare": "$40.91"
 }, {
   "id": 3,
   "rideOption": "CAR",
-  "rideImage": "https://ibb.co/N6zbRP1",
+  "rideImage": "https://i.ibb.co/HDQ3ZsN/car.png",
   "rideFare": "$6.15"
 }, {
   "id": 4,
   "rideOption": "TRAIN",
-  "rideImage": "https://ibb.co/jy2x4wp",
+  "rideImage": "https://i.ibb.co/gSpXgWn/train.png",
   "rideFare": "$59.77"
-}, {
-  "id": 5,
-  "rideOption": "CNG",
-  "rideImage": "https://robohash.org/rationeabcumque.jpg?size=50x50&set=set1",
-  "rideFare": "$8.94"
-}, {
-  "id": 6,
-  "rideOption": "AUTO",
-  "rideImage": "https://robohash.org/doloremquesedconsequatur.jpg?size=50x50&set=set1",
-  "rideFare": "$10.39"
-}, {
-  "id": 7,
-  "rideOption": "LEGUNA",
-  "rideImage": "https://robohash.org/quoperferendisdolorum.jpg?size=50x50&set=set1",
-  "rideFare": "$84.38"
-}, {
-  "id": 8,
-  "rideOption": "PRIVATE CAR",
-  "rideImage": "https://robohash.org/estinquae.jpg?size=50x50&set=set1",
-  "rideFare": "$52.13"
-}, {
-  "id": 9,
-  "rideOption": "MINI BUS",
-  "rideImage": "https://robohash.org/ullamevenietcupiditate.jpg?size=50x50&set=set1",
-  "rideFare": "$44.68"
-}, {
-  "id": 10,
-  "rideOption": "TOUR BUS",
-  "rideImage": "https://robohash.org/liberoerroret.jpg?size=50x50&set=set1",
-  "rideFare": "$76.80"
 }]

@@ -5,8 +5,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../App';
 
 const Header = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  console.log(loggedInUser)
+  const [loggedInUser] = useContext(UserContext);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">

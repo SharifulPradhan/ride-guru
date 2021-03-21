@@ -7,7 +7,7 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 
 if (!firebase.apps.length) {
@@ -18,12 +18,13 @@ if (!firebase.apps.length) {
 
 
 const Login = () => {
+
+  // firebase Auth Providers
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
 
-  const [registeredUser, setRegisteredUser] = useState(false);
-  // declare a State for store user data
+  const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
     isSignIn: false,
     name: '',
@@ -34,7 +35,9 @@ const Login = () => {
     photo: ''
   })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  console.log(loggedInUser, loggedInUser.displayName);
+  const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
   // Google Firebase Authentication
   const handleGoogleSignin = () => {
     firebase.auth().signInWithPopup(googleProvider)
@@ -48,6 +51,7 @@ const Login = () => {
         }
         setUser(signedInUser);
         setLoggedInUser(signedInUser);
+        history.replace(from)
       })
       .catch(err => {
         console.log(err.message);
@@ -68,6 +72,7 @@ const Login = () => {
         }
         setUser(signedInUser);
         setLoggedInUser(signedInUser);
+        history.replace(from)
       })
       .catch(err => {
         console.log(err.message);
@@ -92,7 +97,7 @@ const Login = () => {
   }
 
   const handleSubmit = (e) => {
-    if(!registeredUser && user.email && user.password){
+    if(newUser && user.email && user.password){
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
     .then( res => {
       const newUserInfo = {...user};
@@ -109,7 +114,7 @@ const Login = () => {
     })
   }
 
-  if(registeredUser && user.email && user.password){
+  if(!newUser && user.email && user.password){
     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
   .then( res => {
       const newUserInfo = {...user};
@@ -119,6 +124,7 @@ const Login = () => {
       newUserInfo.isSignIn = true;
       setUser(newUserInfo);
       setLoggedInUser(newUserInfo);
+      history.replace(from);
   })
   .catch((error) => {
     const newUserInfo = {...user};
@@ -143,29 +149,29 @@ const Login = () => {
     console.log(name);
   }
   return (
-    <div className="container border shadow rounded text-center d-flex flex-column justify-content-center align-items-center w-50">
+    <div className="container border text-center d-flex flex-column justify-content-center align-items-center w-50">
       <form onSubmit={handleSubmit} className="form-group d-flex flex-column w-50">
         <h1>{loggedInUser.name}</h1>
-        <h1> { registeredUser ? 'Login' : 'Create an account'}
+        <h1> { newUser ? 'Create an account' : 'Log In'}
         </h1>
         <p style={{color:"red", fontWeight:'700'}}>{user.error}</p>
         {
-        user.success && <p style={{color:"green", fontWeight:'700'}}>{registeredUser ? "login Successfull" : "Account successfully created"}</p>
+        user.success && <p style={{color:"green", fontWeight:'700'}}>{newUser ? "Account successfully created" : "Login Successfull"}</p>
         }
         {
-          !registeredUser && <input type="text" className="form-control mt-5" name="name" onBlur={handleBlur}  placeholder="Name" required/>
+          newUser && <input type="text" className="form-control mt-5" name="name" onBlur={handleBlur}  placeholder="Name" required/>
         }
         <input type="email" className="form-control mt-5" name="email" onBlur={handleBlur} placeholder="Email" required/>
         <input type="password" className="form-control mt-5" name="password" onBlur={handleBlur} placeholder="Password" required/>
         {
-          registeredUser 
-          ? <input type="submit" className="btn btn-primary mt-5" value="Login" />
-          : <input type="submit" className="btn btn-primary mt-5" value="Create an account" />
+          newUser 
+          ? <input type="submit" className="btn btn-primary mt-5" value="Create an account" />
+          : <input type="submit" className="btn btn-primary mt-5" value="Login" />
         }
         {
-          registeredUser
-          ?<p>Don't have an account? <Link to="/login" onClick={() => setRegisteredUser(!registeredUser)}>Create an account</Link></p>
-          :<p>Already have an account? <Link to="/login" onClick={() => setRegisteredUser(!registeredUser)}>Login</Link></p>
+          newUser
+          ?<p>Already have an account? <Link to="/login" onClick={() => setNewUser(!newUser)}>Login</Link></p>
+          :<p>Don't have an account? <Link to="/login" onClick={() => setNewUser(!newUser)}>Create an account</Link></p>
         }
       </form>
       <h1>or</h1>

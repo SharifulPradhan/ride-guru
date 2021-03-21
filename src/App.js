@@ -12,6 +12,8 @@ import { createContext } from 'react';
 import { useState } from 'react';
 import UserDetails from './components/UserDetails/UserDetails';
 import NotFound from './components/NotFound/NotFound';
+import Destination from './components/Destination/Destination';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 
@@ -19,7 +21,6 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value = {[loggedInUser, setLoggedInUser]} className="container-fluid banner">
-      <h1> {loggedInUser.name} </h1>
       <Router>
         <Header/>
         <Switch>
@@ -35,6 +36,9 @@ function App() {
           <Route path='/user-details'>
             <UserDetails/>
           </Route>
+          <PrivateRoute path='/destination'>
+            <Destination/>
+          </PrivateRoute>
           <Route path='*'>
             <NotFound/>
           </Route>
