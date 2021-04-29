@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 
 
-const RideDetails = (props) => {
+const RideDetails =  (props) => {
   const history = useHistory();
   const { id, rideOption, rideImage } = props.rideDetails;
   return (
