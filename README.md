@@ -10,5 +10,5 @@ I learned How to use
   # Firebase Authentication
   # Private Route
 
-## I tried very hard to add the google map option but I am Failed.
+
   
